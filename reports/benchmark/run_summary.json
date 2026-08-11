@@ -1,0 +1,41 @@
+{
+  "mode": "full",
+  "models": [
+    "yolov10s",
+    "yolo11s",
+    "yolov12s",
+    "yolov13s",
+    "rfdetrs",
+    "tinyformers",
+    "deimv2s"
+  ],
+  "scenarios": [
+    "B0",
+    "B1",
+    "B2"
+  ],
+  "base_environment": "soilcpu",
+  "temporary_environment": "ganoderma_bench_tmp",
+  "max_epochs": 100,
+  "patience": 10,
+  "batch": 32,
+  "workers_requested": 2,
+  "workers_effective_common": 2,
+  "rf_batch": 32,
+  "rf_grad_accum": 1,
+  "seed": 42,
+  "budget_mode": "epoch_matched",
+  "epoch_plan": {
+    "B0": 100,
+    "B1": 100,
+    "B2": 100
+  },
+  "budget_interpretation": "epoch_matched answers whether the complete training pipeline improves performance; update_matched is the optional strict approximate optimizer-update ablation",
+  "status": {
+    "yolov10s": "completed",
+    "yolo11s": "completed",
+    "yolov12s": "completed",
+    "yolov13s": "completed",
+    "rfdetrs": "running"
+  }
+}

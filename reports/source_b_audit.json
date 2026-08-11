@@ -1,0 +1,44 @@
+{
+  "source": "source_b",
+  "root": "data/raw/source_b",
+  "data_yaml": "data/raw/source_b/data.yaml",
+  "classes": {
+    "0": "BSR",
+    "1": "Healthy",
+    "2": "Non-BSR"
+  },
+  "splits": {
+    "train": {
+      "image_count": 784,
+      "empty_images": 6,
+      "corrupt_images": 0,
+      "class_box_counts": {
+        "0:BSR": 499,
+        "1:Healthy": 248,
+        "2:Non-BSR": 488
+      },
+      "width_median": 640.0,
+      "height_median": 640.0,
+      "boxes_per_image_median": 1.0,
+      "relative_box_area_median": 0.3323828125
+    },
+    "valid": {
+      "image_count": 75,
+      "empty_images": 0,
+      "corrupt_images": 0,
+      "class_box_counts": {
+        "0:BSR": 49,
+        "1:Healthy": 25,
+        "2:Non-BSR": 44
+      },
+      "width_median": 640.0,
+      "height_median": 640.0,
+      "boxes_per_image_median": 2.0,
+      "relative_box_area_median": 0.33582336425781256
+    },
+    "test": {
+      "missing": true
+    }
+  },
+  "exact_duplicate_files": 0
+}

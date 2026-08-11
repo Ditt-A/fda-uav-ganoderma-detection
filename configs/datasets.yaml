@@ -1,0 +1,72 @@
+download_format: yolov8
+
+sources:
+  source_a:
+    prefix: A
+    workspace: m-rizky-pribadi
+    project: ganoderma-detection-oil-palm-afp9b
+    version: 6
+
+    # Folder hasil download Roboflow yang masih berisi 3x augmentation.
+    download_output: data/raw/source_a
+
+    # Folder efektif yang akan dipakai audit dan harmonisasi.
+    output: data/raw/source_a_recovered
+
+    positive_names:
+      - ganoderma
+      - bsr
+
+    negative_names: []
+
+    recovery:
+      enabled: true
+
+      # Input augmented dari Roboflow.
+      input: data/raw/source_a
+
+      # Output hasil pemilihan satu representatif per source image.
+      output: data/raw/source_a_recovered
+
+      filename_delimiter: ".rf."
+
+      # README Roboflow menyebut 3 versions per source image.
+      expected_versions_per_source: 3
+
+      # Berdasarkan:
+      # 265 kelompok x 1 source
+      # + 32 kelompok x 2 source
+      # = 329 source images.
+      expected_train_sources: 329
+
+      # Deteksi piksel hampir hitam.
+      black_threshold: 12
+      max_selected_black_ratio: 0.03
+
+      # Kelompok dengan margin kecil ditandai untuk review.
+      selection_margin_review: 0.002
+      cluster_margin_review: 0.01
+
+      # Output recovery akan dibuat ulang setiap pipeline dijalankan.
+      overwrite: true
+
+      report_dir: reports/recovery
+
+  source_b:
+    prefix: B
+    workspace: adnans-object-detection
+    project: oil-palm-bsr-disease-detection
+    version: 1
+
+    download_output: data/raw/source_b
+    output: data/raw/source_b
+
+    positive_names:
+      - bsr
+      - ganoderma
+
+    negative_names:
+      - healthy
+      - non-bsr
+      - non_bsr
+      - non bsr

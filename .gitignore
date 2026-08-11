@@ -1,0 +1,43 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Datasets and generated training state
+/data/
+/runs/
+/archives/
+/external/
+
+# Downloaded weights and checkpoints
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.engine
+
+# Training logs and process markers
+*.log
+events.out.tfevents.*
+reports/**/*.pid
+reports/**/*.logpath
+reports/recovery/**/review_sheets/
+
+# Editor and operating-system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,51 @@
+seed: 42
+
+group_split:
+  train: 0.70
+  valid: 0.15
+  test: 0.15
+
+tiling:
+  enabled: true
+  source_prefixes:
+    - A
+  tile_width: 320
+  tile_height: 320
+  overlap: 0.20
+  min_box_visibility: 0.50
+  keep_empty_tiles: true
+  train_max_background_to_positive_ratio: 0.5
+
+evaluation:
+  balanced_diagnostic:
+    max_background_to_positive_ratio: 1.0
+
+augmentation:
+  geometric_copies_per_image: 1
+  fda_copies_per_image: 1
+  horizontal_flip_p: 0.50
+  vertical_flip_p: 0.50
+  rotate90_p: 0.0
+  affine_p: 0.0
+  scale_limit: 0.0
+  translate_limit: 0.0
+  rotate_limit: 0.0
+
+fda:
+  enabled: true
+  beta: 0.01
+  lambda_mix: 0.35
+  bidirectional: true
+  donor_resize: true
+  # Used only when bidirectional=false. The one-way policy is explicit.
+  one_way_content_source: A
+  one_way_donor_source: B
+
+training:
+  epochs: 100
+  imgsz: 640
+  batch: 16
+  patience: 10
+  device: "0"
+  workers: 8
+  seed: 42

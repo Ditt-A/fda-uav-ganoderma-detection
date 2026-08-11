@@ -1,0 +1,18 @@
+{
+  "source": "source_a",
+  "input": "data/raw/source_a",
+  "output": "data/raw/source_a_recovered",
+  "filename_delimiter": ".rf.",
+  "expected_versions_per_source": 3,
+  "base_name_groups": 297,
+  "group_size_distribution": {
+    "3": 265,
+    "6": 32
+  },
+  "recovered_train_sources": 329,
+  "valid_copied": 104,
+  "test_copied": 42,
+  "review_group_count": 42,
+  "selected_black_border_count": 13,
+  "method_note": "Filename dipakai hanya untuk mengelompokkan turunan dengan base name yang sama. Hash setelah .rf. tidak mengidentifikasi original atau augmentation. Kelompok ukuran 6 dipecah menjadi dua triplet menggunakan kemiripan visual. Satu likely clean representative dipilih berdasarkan artefak border terendah."
+}

@@ -1,0 +1,1 @@
+rfdetr[train,loggers]>=1.6

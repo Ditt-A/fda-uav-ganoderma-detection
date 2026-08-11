@@ -1,0 +1,12 @@
+roboflow>=1.2
+ultralytics>=8.3
+opencv-python>=4.10
+albumentations>=1.4,<3
+numpy>=1.26
+PyYAML>=6.0
+Pillow>=10
+pandas>=2.2
+tqdm>=4.66
+scikit-learn>=1.5
+matplotlib>=3.9
+pycocotools>=2.0.7

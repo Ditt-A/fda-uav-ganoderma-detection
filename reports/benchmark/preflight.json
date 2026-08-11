@@ -1,0 +1,247 @@
+{
+  "policy": {
+    "batch_order": [
+      16,
+      32
+    ],
+    "batch32_requires_all_batch16": true,
+    "worker_fallback": [
+      8,
+      4,
+      2,
+      0
+    ],
+    "scenario": "B0",
+    "epochs": 1,
+    "seed": 42
+  },
+  "batches": {
+    "16": {
+      "yolov10s": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov10', '--weights', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/yolov10/yolov10s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_8', '--run-name', 'B0_yolov10s', '--epochs', '1', '--batch', '16', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolo11s": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolo', '--weights', 'yolo11s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_8', '--run-name', 'B0_yolo11s', '--epochs', '1', '--batch', '16', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolov12s": {
+        "status": "PASS",
+        "workers": 8,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolov13s": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov13', '--weights', 'yolov13s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_8', '--run-name', 'B0_yolov13s', '--epochs', '1', '--batch', '16', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 137."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "rfdetrs": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_8/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_16/workers_8', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_8/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '16', '--rf-grad-accum', '1', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_4/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_16/workers_4', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_4/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '16', '--rf-grad-accum', '1', '--workers', '4', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 2,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_2/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_16/workers_2', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_2/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '16', '--rf-grad-accum', '1', '--workers', '2', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 0,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_0/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_16/workers_0', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_16/workers_0/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '16', '--rf-grad-accum', '1', '--workers', '0', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "tinyformers": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '-m', 'torch.distributed.run', '--nproc_per_node=1', '--master_port=7777', 'train.py', '-c', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/configs/ganoderma/tinyformer_s_B0.yml', '--use-amp', '--seed', '42', '-t', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/ckpts/TinyFormer-S.pth']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    "32": {
+      "skipped": "batch16_not_stable_for_all",
+      "yolov10s": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov10', '--weights', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/yolov10/yolov10s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8', '--run-name', 'B0_yolov10s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolo11s": {
+        "status": "PASS",
+        "workers": 2,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolo', '--weights', 'yolo11s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8', '--run-name', 'B0_yolo11s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolo', '--weights', 'yolo11s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_4', '--run-name', 'B0_yolo11s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '4', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 2,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolov12s": {
+        "status": "PASS",
+        "workers": 2,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov12', '--weights', 'yolov12s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8', '--run-name', 'B0_yolov12s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov12', '--weights', 'yolov12s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_4', '--run-name', 'B0_yolov12s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '4', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 2,
+            "status": "PASS"
+          }
+        ]
+      },
+      "yolov13s": {
+        "status": "PASS",
+        "workers": 4,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'yolo_train', '--family', 'yolov13', '--weights', 'yolov13s.pt', '--dataset', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/processed/scenarios/B0/data.yaml', '--project', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8', '--run-name', 'B0_yolov13s', '--epochs', '1', '--batch', '32', '--imgsz', '640', '--patience', '1', '--device', '0', '--workers', '8', '--seed', '42']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "PASS"
+          }
+        ]
+      },
+      "rfdetrs": {
+        "status": "PASS",
+        "workers": 2,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_32/workers_8', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_8/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '32', '--rf-grad-accum', '1', '--workers', '8', '--seed', '42', '--preflight-smoke']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/scripts/run_benchmark_auto.py', '--worker', 'rfdetr', '--dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full/rfdetr_dataset', '--balanced-dataset-root', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic/rfdetr_dataset', '--coco-primary', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/primary_full', '--coco-balanced', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B0/balanced_diagnostic', '--metadata', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_4/B0_rfdetrs/training_budget.json', '--final-report-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/reports/benchmark/preflight/batch_32/workers_4', '--output-dir', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/runs/preflight/batch_32/workers_4/B0_rfdetrs', '--epochs', '1', '--patience', '1', '--device', '0', '--rf-batch', '32', '--rf-grad-accum', '1', '--workers', '4', '--seed', '42', '--preflight-smoke']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 2,
+            "status": "PASS"
+          }
+        ]
+      },
+      "tinyformers": {
+        "status": "PASS",
+        "workers": 2,
+        "attempts": [
+          {
+            "workers": 8,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '-m', 'torch.distributed.run', '--nproc_per_node=1', '--master_port=7777', 'train.py', '-c', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/configs/ganoderma/tinyformer_s_B0.yml', '--use-amp', '--seed', '42', '-t', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/ckpts/TinyFormer-S.pth']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 4,
+            "status": "FAIL",
+            "error": "CalledProcessError: Command '['conda', 'run', '--no-capture-output', '-n', 'ganoderma_bench_tmp', 'python', '-m', 'torch.distributed.run', '--nproc_per_node=1', '--master_port=7777', 'train.py', '-c', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/configs/ganoderma/tinyformer_s_B0.yml', '--use-amp', '--seed', '42', '-t', '/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/TinyFormer/ckpts/TinyFormer-S.pth']' returned non-zero exit status 1."
+          },
+          {
+            "workers": 2,
+            "status": "PASS"
+          }
+        ]
+      }
+    }
+  },
+  "blocking_reasons": [],
+  "recommended_common_batch": 32,
+  "recommended_common_workers": 2,
+  "effective_workers_by_model": {
+    "yolov10s": 4,
+    "yolo11s": 2,
+    "yolov12s": 2,
+    "yolov13s": 4,
+    "rfdetrs": 2,
+    "tinyformers": 2
+  },
+  "ready_for_full_benchmark": true
+}

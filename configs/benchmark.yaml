@@ -1,0 +1,79 @@
+scenarios:
+  - name: B0
+    yolo_data: data/processed/scenarios/B0/data.yaml
+    coco_data: data/exports/coco/B0
+
+  - name: B1
+    yolo_data: data/processed/scenarios/B1/data.yaml
+    coco_data: data/exports/coco/B1
+
+models:
+  - name: yolov10_s
+    display_name: YOLOv10-S
+    backend: yolov10_official
+    environment: yolov10
+    data_format: yolo
+    weights: external/yolov10/yolov10s.pt
+    repository: external/yolov10
+    input_size: 640
+
+  - name: yolo11_s
+    display_name: YOLO11-S
+    backend: ultralytics
+    environment: soilcpu
+    data_format: yolo
+    weights: yolo11s.pt
+    input_size: 640
+
+  - name: yolov12_s
+    display_name: YOLOv12-S
+    backend: yolov12_official
+    environment: yolov12
+    data_format: yolo
+    weights: external/yolov12/yolov12s.pt
+    repository: external/yolov12
+    input_size: 640
+
+  - name: yolov13_s
+    display_name: YOLOv13-S
+    backend: yolov13_official
+    environment: yolov13
+    data_format: yolo
+    weights: external/yolov13/yolov13s.pt
+    repository: external/yolov13
+    input_size: 640
+
+  - name: rf_detr_s
+    display_name: RF-DETR-S
+    backend: rfdetr
+    environment: rfdetr
+    data_format: coco
+    class_name: RFDETRSmall
+    input_size: 512
+
+  - name: tinyformer_s_pbm
+    display_name: TinyFormer-S-PBM
+    backend: tinyformer
+    environment: tinyformer
+    data_format: coco
+    repository: external/TinyFormer
+    model_config: configs/tinyformer/tinyformer_dinov3_s_coco_pbm.yml
+    input_size: 640
+
+
+  - name: deimv2_s
+    display_name: DEIMv2-S
+    backend: deimv2
+    environment: ganoderma_bench_tmp
+    data_format: coco
+    repository: external/DEIMv2
+    model_config: configs/deimv2/deimv2_dinov3_s_coco.yml
+    weights: external/DEIMv2/ckpts/deimv2_dinov3_s_coco.pth
+    input_size: 640
+
+training:
+  epochs: 100
+  batch: 8
+  patience: 20
+  seed: 42
+  device: "0"

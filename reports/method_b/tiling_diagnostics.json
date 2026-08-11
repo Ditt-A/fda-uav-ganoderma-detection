@@ -1,0 +1,69 @@
+{
+  "seed": 42,
+  "policy": {
+    "grid": "deterministic_edge_covering",
+    "train_background_selection": "sha256_rank",
+    "train_max_background_to_positive_ratio": 0.5,
+    "validation_test_backgrounds": "all_preserved",
+    "positive_centric_alternative": "investigated_not_adopted: changing the grid would change the primary evaluation distribution; deterministic grid plus a secondary balanced view separates realism from sensitivity"
+  },
+  "splits": {
+    "train": {
+      "candidate_positive_tiles": 390,
+      "candidate_background_tiles": 890,
+      "kept_background_tiles": 195,
+      "dropped_background_tiles": 695,
+      "by_source": {
+        "A": {
+          "positive_tile": 390,
+          "empty_tile": 195
+        },
+        "B": {
+          "passthrough": 594,
+          "negative_passthrough": 290,
+          "positive_passthrough": 304
+        }
+      },
+      "boxes_clipped": 73,
+      "boxes_removed_min_visibility": 79
+    },
+    "valid": {
+      "candidate_positive_tiles": 92,
+      "candidate_background_tiles": 272,
+      "kept_background_tiles": 272,
+      "dropped_background_tiles": 0,
+      "by_source": {
+        "A": {
+          "positive_tile": 92,
+          "empty_tile": 272
+        },
+        "B": {
+          "passthrough": 147,
+          "positive_passthrough": 78,
+          "negative_passthrough": 69
+        }
+      },
+      "boxes_clipped": 14,
+      "boxes_removed_min_visibility": 14
+    },
+    "test": {
+      "candidate_positive_tiles": 62,
+      "candidate_background_tiles": 194,
+      "kept_background_tiles": 194,
+      "dropped_background_tiles": 0,
+      "by_source": {
+        "A": {
+          "positive_tile": 62,
+          "empty_tile": 194
+        },
+        "B": {
+          "passthrough": 118,
+          "negative_passthrough": 45,
+          "positive_passthrough": 73
+        }
+      },
+      "boxes_clipped": 9,
+      "boxes_removed_min_visibility": 26
+    }
+  }
+}

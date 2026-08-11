@@ -1,0 +1,290 @@
+{
+  "seed": 42,
+  "group_leakage_count": 0,
+  "group_leakage": {},
+  "exact_original_image_leakage_count": 0,
+  "exact_original_image_leakage": {},
+  "source_split_counts_before_tiling": {
+    "A": {
+      "valid": 91,
+      "train": 320,
+      "test": 64
+    },
+    "B": {
+      "train": 594,
+      "valid": 147,
+      "test": 118
+    }
+  },
+  "scenarios": {
+    "B0": {
+      "train": {
+        "images": 1179,
+        "source_images": {
+          "A": 585,
+          "B": 594
+        },
+        "source_boxes": {
+          "A": 513,
+          "B": 377
+        },
+        "source_negative_images": {
+          "A": 195,
+          "B": 290
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "valid": {
+        "images": 511,
+        "source_images": {
+          "A": 364,
+          "B": 147
+        },
+        "source_boxes": {
+          "A": 111,
+          "B": 92
+        },
+        "source_negative_images": {
+          "A": 272,
+          "B": 69
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "test": {
+        "images": 374,
+        "source_images": {
+          "A": 256,
+          "B": 118
+        },
+        "source_boxes": {
+          "A": 70,
+          "B": 79
+        },
+        "source_negative_images": {
+          "A": 194,
+          "B": 45
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      }
+    },
+    "B1": {
+      "train": {
+        "images": 2358,
+        "source_images": {
+          "A": 1170,
+          "B": 1188
+        },
+        "source_boxes": {
+          "A": 1026,
+          "B": 754
+        },
+        "source_negative_images": {
+          "A": 390,
+          "B": 580
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "valid": {
+        "images": 511,
+        "source_images": {
+          "A": 364,
+          "B": 147
+        },
+        "source_boxes": {
+          "A": 111,
+          "B": 92
+        },
+        "source_negative_images": {
+          "A": 272,
+          "B": 69
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "test": {
+        "images": 374,
+        "source_images": {
+          "A": 256,
+          "B": 118
+        },
+        "source_boxes": {
+          "A": 70,
+          "B": 79
+        },
+        "source_negative_images": {
+          "A": 194,
+          "B": 45
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      }
+    },
+    "B2": {
+      "train": {
+        "images": 3537,
+        "source_images": {
+          "A": 1755,
+          "B": 1782
+        },
+        "source_boxes": {
+          "A": 1539,
+          "B": 1131
+        },
+        "source_negative_images": {
+          "A": 585,
+          "B": 870
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "valid": {
+        "images": 511,
+        "source_images": {
+          "A": 364,
+          "B": 147
+        },
+        "source_boxes": {
+          "A": 111,
+          "B": 92
+        },
+        "source_negative_images": {
+          "A": 272,
+          "B": 69
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      },
+      "test": {
+        "images": 374,
+        "source_images": {
+          "A": 256,
+          "B": 118
+        },
+        "source_boxes": {
+          "A": 70,
+          "B": 79
+        },
+        "source_negative_images": {
+          "A": 194,
+          "B": 45
+        },
+        "invalid_labels": [],
+        "invalid_label_count": 0
+      }
+    }
+  },
+  "identity": {
+    "primary_full_valid": {
+      "same_content": true,
+      "pairs": {
+        "B0_B1": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 511,
+          "count_b1": 511,
+          "only_b0": [],
+          "only_b1": []
+        },
+        "B0_B2": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 511,
+          "count_b2": 511,
+          "only_b0": [],
+          "only_b2": []
+        }
+      }
+    },
+    "balanced_diagnostic_valid": {
+      "same_content": true,
+      "pairs": {
+        "B0_B1": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 331,
+          "count_b1": 331,
+          "only_b0": [],
+          "only_b1": []
+        },
+        "B0_B2": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 331,
+          "count_b2": 331,
+          "only_b0": [],
+          "only_b2": []
+        }
+      }
+    },
+    "primary_full_test": {
+      "same_content": true,
+      "pairs": {
+        "B0_B1": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 374,
+          "count_b1": 374,
+          "only_b0": [],
+          "only_b1": []
+        },
+        "B0_B2": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 374,
+          "count_b2": 374,
+          "only_b0": [],
+          "only_b2": []
+        }
+      }
+    },
+    "balanced_diagnostic_test": {
+      "same_content": true,
+      "pairs": {
+        "B0_B1": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 242,
+          "count_b1": 242,
+          "only_b0": [],
+          "only_b1": []
+        },
+        "B0_B2": {
+          "same_names": true,
+          "same_content": true,
+          "count_b0": 242,
+          "count_b2": 242,
+          "only_b0": [],
+          "only_b2": []
+        }
+      }
+    }
+  },
+  "exact_scenario_image_leakage_count": 0,
+  "exact_scenario_image_leakage": {},
+  "fda_config_controls": {
+    "bidirectional": true,
+    "donor_resize": true,
+    "records_checked": 1179,
+    "resize_true_resizes": true,
+    "resize_false_rejects": true,
+    "active_and_verified": true,
+    "failures": []
+  },
+  "source_annotation_audit_rows": 6,
+  "train_count_assertions": {
+    "B1_equals_2x_B0": true,
+    "B2_equals_3x_B0": true,
+    "counts": {
+      "B0": 1179,
+      "B1": 2358,
+      "B2": 3537
+    }
+  },
+  "invalid_label_count": 0,
+  "failures": [],
+  "status": "PASS"
+}

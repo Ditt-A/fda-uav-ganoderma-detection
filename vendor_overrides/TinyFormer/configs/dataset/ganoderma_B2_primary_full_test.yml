@@ -1,0 +1,86 @@
+task: detection
+evaluator:
+  type: CocoEvaluator
+  iou_types:
+  - bbox
+num_classes: 1
+remap_mscoco_category: false
+train_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: /home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B2/primary_full/images/train
+    ann_file: /home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B2/primary_full/annotations/instances_train.json
+    return_masks: false
+    transforms:
+      type: Compose
+      ops:
+      - type: Resize
+        size:
+        - 640
+        - 640
+      - type: SanitizeBoundingBoxes
+        min_size: 1
+      - type: ConvertPILImage
+        dtype: float32
+        scale: true
+      - type: Normalize
+        mean:
+        - 0.485
+        - 0.456
+        - 0.406
+        std:
+        - 0.229
+        - 0.224
+        - 0.225
+      - type: ConvertBoxes
+        fmt: cxcywh
+        normalize: true
+  shuffle: true
+  num_workers: 2
+  drop_last: true
+  collate_fn:
+    type: BatchImageCollateFunction
+    base_size: 640
+    base_size_repeat: null
+    mixup_prob: 0.0
+    copyblend_prob: 0.0
+    stop_epoch: 999999
+  total_batch_size: 32
+val_dataloader:
+  type: DataLoader
+  dataset:
+    type: CocoDetection
+    img_folder: /home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B2/primary_full/images/test
+    ann_file: /home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/data/exports/coco/B2/primary_full/annotations/instances_test.json
+    return_masks: false
+    transforms:
+      type: Compose
+      ops:
+      - type: Resize
+        size:
+        - 640
+        - 640
+      - type: SanitizeBoundingBoxes
+        min_size: 1
+      - type: ConvertPILImage
+        dtype: float32
+        scale: true
+      - type: Normalize
+        mean:
+        - 0.485
+        - 0.456
+        - 0.406
+        std:
+        - 0.229
+        - 0.224
+        - 0.225
+      - type: ConvertBoxes
+        fmt: cxcywh
+        normalize: true
+  shuffle: false
+  num_workers: 2
+  drop_last: false
+  collate_fn:
+    type: BatchImageCollateFunction
+  total_batch_size: 32

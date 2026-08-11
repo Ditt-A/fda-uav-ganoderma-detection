@@ -1,0 +1,9 @@
+{
+  "model_repository": "Intellindust/DEIMv2_DINOv3_S_COCO",
+  "safetensors_tensors": 671,
+  "native_checkpoint": "/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/DEIMv2/ckpts/deimv2_dinov3_s_coco.pth",
+  "backbone_tensors": 148,
+  "backbone_checkpoint": "/home/nafisnaufal1426/adit/gemastik/ganoderma_uav_research_starter/external/DEIMv2/ckpts/vitt_distill.pt",
+  "source_patch_common_coco_predictions": true,
+  "source_patch_early_stopping": true
+}

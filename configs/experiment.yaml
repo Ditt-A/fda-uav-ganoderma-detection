@@ -1,0 +1,43 @@
+seed: 42
+
+tiling:
+  enabled: true
+  # Terapkan hanya pada sumber yang objeknya terlalu kecil setelah audit.
+  # Gunakan [] untuk semua sumber atau ["A"] / ["B"] untuk sumber tertentu.
+  source_prefixes: []
+  tile_width: 640
+  tile_height: 640
+  overlap: 0.20
+  min_box_visibility: 0.50
+  keep_empty_tiles: true
+  max_empty_to_positive_ratio: 2.0
+
+augmentation:
+  geometric_copies_per_image: 1
+  fda_copies_per_image: 1
+
+  horizontal_flip_p: 0.50
+  vertical_flip_p: 0.50
+
+  rotate90_p: 0.0
+
+  affine_p: 0.0
+  scale_limit: 0.0
+  translate_limit: 0.0
+  rotate_limit: 0.0
+
+fda:
+  enabled: true
+  beta: 0.01
+  lambda_mix: 0.35
+  bidirectional: true
+  donor_resize: true
+
+training:
+  epochs: 100
+  imgsz: 640
+  batch: 8
+  patience: 20
+  device: "0"
+  workers: 4
+  seed: 42

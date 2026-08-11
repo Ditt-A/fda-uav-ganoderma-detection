@@ -1,0 +1,47 @@
+{
+  "source": "source_a",
+  "root": "data/raw/source_a_recovered",
+  "data_yaml": "data/raw/source_a_recovered/data.yaml",
+  "classes": {
+    "0": "Ganoderma"
+  },
+  "splits": {
+    "train": {
+      "image_count": 329,
+      "empty_images": 128,
+      "corrupt_images": 0,
+      "class_box_counts": {
+        "0:Ganoderma": 406
+      },
+      "width_median": 576.0,
+      "height_median": 576.0,
+      "boxes_per_image_median": 1.0,
+      "relative_box_area_median": 0.007431972173996914
+    },
+    "valid": {
+      "image_count": 104,
+      "empty_images": 41,
+      "corrupt_images": 0,
+      "class_box_counts": {
+        "0:Ganoderma": 126
+      },
+      "width_median": 576.0,
+      "height_median": 576.0,
+      "boxes_per_image_median": 1.0,
+      "relative_box_area_median": 0.007307641300154321
+    },
+    "test": {
+      "image_count": 42,
+      "empty_images": 16,
+      "corrupt_images": 0,
+      "class_box_counts": {
+        "0:Ganoderma": 50
+      },
+      "width_median": 576.0,
+      "height_median": 576.0,
+      "boxes_per_image_median": 1.0,
+      "relative_box_area_median": 0.006585768711419753
+    }
+  },
+  "exact_duplicate_files": 0
+}

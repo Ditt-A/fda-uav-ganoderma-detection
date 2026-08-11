@@ -1,0 +1,5 @@
+python=3.11.15 (main, Mar 11 2026, 17:20:07) [GCC 14.3.0]
+torch=2.2.2+cu118
+cuda=11.8
+cuda_available=True
+gpu=NVIDIA A100-SXM4-80GB

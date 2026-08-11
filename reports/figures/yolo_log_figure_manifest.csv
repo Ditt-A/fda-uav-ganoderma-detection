@@ -1,0 +1,17 @@
+artifact,kind,source
+reports/figures/yolo_learning_curves_map50_95.png,figure,YOLO results.csv / final_metrics.csv
+reports/figures/yolo_learning_curves_map50_95.pdf,figure,YOLO results.csv / final_metrics.csv
+reports/figures/yolo_learning_curves_precision_recall.png,figure,YOLO results.csv / final_metrics.csv
+reports/figures/yolo_learning_curves_precision_recall.pdf,figure,YOLO results.csv / final_metrics.csv
+runs/benchmark/B0_yolo11s/results.csv,training_log,26 epoch records
+runs/benchmark/B1_yolo11s/results.csv,training_log,27 epoch records
+runs/benchmark/B2_yolo11s/results.csv,training_log,39 epoch records
+runs/benchmark/B0_yolov10s/results.csv,training_log,39 epoch records
+runs/benchmark/B1_yolov10s/results.csv,training_log,37 epoch records
+runs/benchmark/B2_yolov10s/results.csv,training_log,29 epoch records
+runs/benchmark/B0_yolov12s/results.csv,training_log,35 epoch records
+runs/benchmark/B1_yolov12s/results.csv,training_log,43 epoch records
+runs/benchmark/B2_yolov12s/results.csv,training_log,23 epoch records
+runs/benchmark/B0_yolov13s/results.csv,training_log,35 epoch records
+runs/benchmark/B1_yolov13s/results.csv,training_log,34 epoch records
+runs/benchmark/B2_yolov13s/results.csv,training_log,23 epoch records
