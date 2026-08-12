@@ -36,6 +36,8 @@
     "yolo11s": "completed",
     "yolov12s": "completed",
     "yolov13s": "completed",
-    "rfdetrs": "running"
+    "rfdetrs": "completed",
+    "tinyformers": "completed",
+    "deimv2s": "running"
   }
 }

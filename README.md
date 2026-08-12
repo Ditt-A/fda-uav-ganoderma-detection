@@ -8,10 +8,10 @@ The full experiment explanation is available in [reports/EXPERIMENT_TECHNICAL_RE
 
 - Dataset recovery, harmonization, group-aware splitting, tiling, and leakage audits: complete.
 - YOLOv10-S, YOLO11-S, YOLOv12-S, and YOLOv13-S on B0/B1/B2: complete.
-- RF-DETR-S: B0 is consolidated; B1/B2 are still running or pending in the current result snapshot.
-- TinyFormer-S-PBM and DEIMv2-S: preflight validation passed; full B0/B1/B2 results are pending.
+- RF-DETR-S and TinyFormer-S-PBM on B0/B1/B2: complete and consolidated.
+- DEIMv2-S: full benchmark is running; its B0/B1/B2 results are not yet consolidated.
 
-The checked-in `reports/benchmark/final_metrics.csv` is therefore a reproducible partial snapshot, not the final seven-model matrix.
+The checked-in `reports/benchmark/final_metrics.csv` is therefore a reproducible six-model partial snapshot, not the final seven-model matrix.
 
 ## Dataset design
 
@@ -136,7 +136,7 @@ Generated publication figures are stored in `reports/figures/` as PNG and PDF.
 
 Across the four completed YOLO families, mean combined primary-full mAP50-95 increases from 0.2627 in B0 to 0.3244 in B1 and 0.3411 in B2. Geometric augmentation improves every YOLO family. The incremental FDA effect is architecture-dependent: it improves YOLOv10-S and YOLO11-S but reduces YOLOv12-S and YOLOv13-S relative to B1.
 
-RF-DETR-S B0 currently has the strongest individual result at 0.4875 mAP50-95, but the overall detector and augmentation conclusions remain preliminary until all transformer runs finish.
+RF-DETR-S B2 currently has the strongest individual result at 0.5023 mAP50-95. TinyFormer-S-PBM also improves from 0.3805 in B0 to 0.4071 in B1 and 0.4619 in B2. The overall detector and augmentation conclusions remain preliminary until DEIMv2-S finishes.
 
 ## Security and artifact policy
 
