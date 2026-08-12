@@ -9,9 +9,9 @@ The full experiment explanation is available in [reports/EXPERIMENT_TECHNICAL_RE
 - Dataset recovery, harmonization, group-aware splitting, tiling, and leakage audits: complete.
 - YOLOv10-S, YOLO11-S, YOLOv12-S, and YOLOv13-S on B0/B1/B2: complete.
 - RF-DETR-S and TinyFormer-S-PBM on B0/B1/B2: complete and consolidated.
-- DEIMv2-S: full benchmark is running; its B0/B1/B2 results are not yet consolidated.
+- DEIMv2-S on B0/B1/B2: complete and consolidated.
 
-The checked-in `reports/benchmark/final_metrics.csv` is therefore a reproducible six-model partial snapshot, not the final seven-model matrix.
+The checked-in `reports/benchmark/final_metrics.csv` is the complete seven-model matrix: 7 models x 3 scenarios x 2 evaluation views x 3 source subsets = 126 rows.
 
 ## Dataset design
 
@@ -132,11 +132,11 @@ python scripts/11_generate_detector_figures.py
 
 Generated publication figures are stored in `reports/figures/` as PNG and PDF.
 
-## Current preliminary result
+## Final benchmark result
 
-Across the four completed YOLO families, mean combined primary-full mAP50-95 increases from 0.2627 in B0 to 0.3244 in B1 and 0.3411 in B2. Geometric augmentation improves every YOLO family. The incremental FDA effect is architecture-dependent: it improves YOLOv10-S and YOLO11-S but reduces YOLOv12-S and YOLOv13-S relative to B1.
+Across all seven detector families, mean combined primary-full mAP50-95 increases from 0.3243 in B0 to 0.3754 in B1 and 0.3958 in B2. Geometric augmentation improves every detector. The incremental FDA effect remains architecture-dependent: five detectors improve, while YOLOv12-S and YOLOv13-S decline relative to B1.
 
-RF-DETR-S B2 currently has the strongest individual result at 0.5023 mAP50-95. TinyFormer-S-PBM also improves from 0.3805 in B0 to 0.4071 in B1 and 0.4619 in B2. The overall detector and augmentation conclusions remain preliminary until DEIMv2-S finishes.
+RF-DETR-S B2 has the strongest individual result at 0.5023 mAP50-95. TinyFormer-S-PBM improves from 0.3805 in B0 to 0.4071 in B1 and 0.4619 in B2, making it the strongest sub-10-million-parameter detector. DEIMv2-S improves from 0.3514 to 0.4264 and 0.4422 across B0/B1/B2.
 
 ## Security and artifact policy
 
