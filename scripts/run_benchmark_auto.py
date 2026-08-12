@@ -1817,7 +1817,7 @@ def worker_rfdetr(
     reuse_completed_training = completion_path.exists() and bool(checkpoint_candidates)
     if reuse_completed_training:
         checkpoint = checkpoint_candidates[0]
-        print(f"[RF-DETR PREFLIGHT RECOVERY] reuse trained checkpoint: {checkpoint}")
+        print(f"[RF-DETR TRAINING RECOVERY] reuse trained checkpoint: {checkpoint}")
         model = None
         if not args.preflight_smoke:
             model = RFDETRSmall(
@@ -1966,10 +1966,19 @@ def worker_rfdetr(
     }
     prediction_adapter_audit = {}
     try:
-        model.optimize_for_inference(batch_size=args.rf_batch)
-        print("[RF-DETR INFERENCE] optimized checkpoint for held-out evaluation")
+        # RF-DETR 1.7.1 defaults to compile=True here, which invokes
+        # torch.jit.trace. On the A100 service this trace can spend tens of
+        # minutes compiling a fixed batch and emits shape-specific
+        # TracerWarnings. The exported eager model is already suitable for
+        # benchmark inference and accepts the final partial batch naturally.
+        model.optimize_for_inference(compile=False)
+        print(
+            "[RF-DETR INFERENCE] prepared eager inference model "
+            "(JIT compilation disabled)",
+            flush=True,
+        )
     except Exception as error:
-        print(f"[RF-DETR INFERENCE] optimization skipped: {error}")
+        print(f"[RF-DETR INFERENCE] eager preparation skipped: {error}", flush=True)
     for evaluation_view, (dataset_root, coco_root) in view_inputs.items():
         prediction_path = output_directory / f"predictions_{evaluation_view}.json"
         common_metrics_path = output_directory / f"common_metrics_{evaluation_view}.json"
@@ -2002,22 +2011,14 @@ def worker_rfdetr(
         discarded_background_predictions = 0
         for start in range(0, len(image_paths), args.rf_batch):
             batch_paths = image_paths[start:start + args.rf_batch]
-            # Compiled RF-DETR inference requires a fixed batch shape.
-            # Pad only the final partial batch and discard padded outputs.
-            inference_batch_paths = list(batch_paths)
-            if inference_batch_paths and len(inference_batch_paths) < args.rf_batch:
-                inference_batch_paths.extend(
-                    [inference_batch_paths[-1]]
-                    * (args.rf_batch - len(inference_batch_paths))
-                )
             outputs = model.predict(
-                [str(path) for path in inference_batch_paths],
+                [str(path) for path in batch_paths],
                 threshold=0.001,
                 shape=(512, 512),
+                include_source_image=False,
             )
             if not isinstance(outputs, list):
                 outputs = [outputs]
-            outputs = outputs[:len(batch_paths)]
             for path, output in zip(batch_paths, outputs):
                 for box, score, class_id in zip(
                     output.xyxy, output.confidence, output.class_id
@@ -2050,6 +2051,12 @@ def worker_rfdetr(
                             "score": float(score),
                         }
                     )
+            print(
+                f"[RF-DETR EVALUATION] {evaluation_view}: "
+                f"{min(start + len(batch_paths), len(image_paths))}/"
+                f"{len(image_paths)} images",
+                flush=True,
+            )
         prediction_path = output_directory / f"predictions_{evaluation_view}.json"
         if 0 not in raw_class_ids:
             raise RuntimeError(
