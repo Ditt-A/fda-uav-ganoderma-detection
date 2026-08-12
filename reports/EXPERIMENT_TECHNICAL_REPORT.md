@@ -1,14 +1,14 @@
 # Cross-Source Ganoderma Detection from UAV Imagery
 
-## Complete Experiment Process and Preliminary Technical Results
+## Complete Experiment Process and Final Technical Results
 
 **Project:** `ganoderma_uav_research_starter`<br>
 **Task:** Single-class object detection of basal stem rot (BSR/Ganoderma) in oil-palm UAV imagery<br>
 **Experiment seed:** 42<br>
-**Result snapshot:** 11 August 2026<br>
-**Status:** Partial benchmark. All YOLO experiments are complete; only RF-DETR-S B0 is included in the consolidated metrics at this snapshot. RF-DETR-S B1/B2, TinyFormer-S-PBM, and DEIMv2-S are still pending or running.
+**Result snapshot:** 12 August 2026<br>
+**Status:** Complete benchmark. All seven detector families and all B0/B1/B2 scenarios are consolidated.
 
-> This document is a technical record of the implemented experiment. Conclusions labelled *preliminary* must be updated after every planned model and scenario has completed.
+> This document records the completed single-seed benchmark. Repeated-seed uncertainty remains optional future work.
 
 ## Abstract
 
@@ -16,7 +16,7 @@ Basal stem rot caused by *Ganoderma* is an important disease of oil palm, and UA
 
 Seven small detector families are included in the complete benchmark design: YOLOv10-S, YOLO11-S, YOLOv12-S, YOLOv13-S, RF-DETR-S, TinyFormer-S-PBM, and DEIMv2-S. Predictions are converted to a common COCO representation and evaluated separately for Source A, Source B, and both sources combined. The main outcome is COCO mAP50–95 on the complete test set (`primary_full`, `COMBINED`). A secondary `balanced_diagnostic` view retains all positive images but limits background-only images, allowing the influence of background prevalence to be examined.
 
-In the currently completed YOLO experiments, geometric augmentation improves combined primary-full mAP50–95 for every architecture. The mean across the four YOLO families increases from 0.2627 in B0 to 0.3244 in B1. Adding FDA raises the four-model mean to 0.3411, but the effect is architecture-dependent: YOLOv10-S and YOLO11-S improve, while YOLOv12-S and YOLOv13-S decline relative to B1. RF-DETR-S B0 currently gives the strongest individual result, with combined primary-full mAP50–95 of 0.4875, but RF-DETR-S B1/B2 are not yet available. The present results therefore support geometric augmentation consistently, while conclusions about FDA and the overall best detector remain preliminary.
+Across all seven detector families, geometric augmentation improves combined primary-full mAP50–95 for every architecture. The seven-model mean increases from 0.3243 in B0 to 0.3754 in B1. Adding FDA raises the mean to 0.3958, but the effect is architecture-dependent: five detectors improve, while YOLOv12-S and YOLOv13-S decline relative to B1. RF-DETR-S B2 gives the strongest individual result at 0.5023, while TinyFormer-S-PBM B2 is the strongest sub-10-million-parameter detector at 0.4619.
 
 ## 1. Research objective
 
@@ -197,9 +197,9 @@ Balanced metrics answer whether excessive background prevalence is driving false
 | YOLO11-S | Ultralytics | 9.43 M | 640 | B0/B1/B2 complete |
 | YOLOv12-S | Official YOLOv12 | 9.10 M | 640 | B0/B1/B2 complete |
 | YOLOv13-S | Official YOLOv13 | 9.55 M | 640 | B0/B1/B2 complete |
-| RF-DETR-S | RF-DETR, DINOv2 windowed-small backbone | 31.79 M | 512 | B0 complete; B1 running; B2 pending |
-| TinyFormer-S-PBM | TinyFormer with DINOv3 configuration | 9.81 M | 640 | Preflight passed; full runs pending |
-| DEIMv2-S | DEIMv2 with DINOv3 ViT-tiny backbone | 9.66 M trainable | 640 | Preflight passed; full runs pending |
+| RF-DETR-S | RF-DETR, DINOv2 windowed-small backbone | 31.79 M | 512 | B0/B1/B2 complete |
+| TinyFormer-S-PBM | TinyFormer with DINOv3 configuration | 9.81 M | 640 | B0/B1/B2 complete |
+| DEIMv2-S | DEIMv2 with DINOv3 ViT-tiny backbone | 9.74 M | 640 | B0/B1/B2 complete |
 
 Pretrained weights are used when required by the native implementation. The task-specific prediction heads are configured for one class. Every model is evaluated through the same COCO annotations and common prediction adapter rather than relying only on framework-native summary values.
 
@@ -270,46 +270,53 @@ Thus, one completed model-scenario run contributes six rows to `final_metrics.cs
 
 Precision, recall, and F1 are computed at IoU 0.50 by sweeping the prediction-confidence threshold and retaining the threshold that maximizes F1 for that evaluation subset. Consequently, these values are useful diagnostics but are optimistic and are not measurements at one fixed deployment threshold. mAP50–95 should be preferred for model ranking.
 
-## 9. Results available in the current snapshot
+## 9. Final benchmark results
 
-The consolidated [final_metrics.csv](benchmark/final_metrics.csv) currently contains 78 rows:
+The consolidated [final_metrics.csv](benchmark/final_metrics.csv) contains 126 rows:
 
-- four YOLO families x three scenarios x six evaluation rows = 72 rows;
-- RF-DETR-S B0 x six evaluation rows = 6 rows.
-
-RF-DETR-S B1/B2, TinyFormer-S-PBM, and DEIMv2-S are absent. The filename means "consolidated metrics discovered so far," not that the entire planned benchmark is complete.
+- seven detector families x three scenarios x six evaluation rows = 126 rows.
 
 ### 9.1 Main result: primary-full combined test set
 
 | Model | Scenario | Precision | Recall | F1 | AP50 | AP75 | mAP50–95 |
 |---|---|---:|---:|---:|---:|---:|---:|
-| RF-DETR-S | B0 | 0.684 | 0.711 | 0.697 | 0.669 | 0.527 | **0.488** |
-| YOLO11-S | B0 | 0.490 | 0.510 | 0.500 | 0.400 | 0.243 | 0.248 |
-| YOLO11-S | B1 | 0.562 | 0.544 | 0.553 | 0.503 | 0.363 | 0.312 |
-| YOLO11-S | B2 | 0.514 | 0.758 | 0.612 | 0.493 | 0.376 | 0.336 |
 | YOLOv10-S | B0 | 0.363 | 0.523 | 0.429 | 0.310 | 0.211 | 0.207 |
 | YOLOv10-S | B1 | 0.484 | 0.517 | 0.500 | 0.378 | 0.308 | 0.267 |
 | YOLOv10-S | B2 | 0.571 | 0.597 | 0.584 | 0.504 | 0.429 | 0.367 |
+| YOLO11-S | B0 | 0.490 | 0.510 | 0.500 | 0.400 | 0.243 | 0.248 |
+| YOLO11-S | B1 | 0.562 | 0.544 | 0.553 | 0.503 | 0.363 | 0.312 |
+| YOLO11-S | B2 | 0.514 | 0.758 | 0.612 | 0.493 | 0.376 | 0.336 |
 | YOLOv12-S | B0 | 0.583 | 0.517 | 0.548 | 0.447 | 0.247 | 0.262 |
 | YOLOv12-S | B1 | 0.493 | 0.752 | 0.596 | 0.491 | 0.370 | 0.338 |
 | YOLOv12-S | B2 | 0.445 | 0.705 | 0.545 | 0.467 | 0.332 | 0.308 |
 | YOLOv13-S | B0 | 0.505 | 0.718 | 0.593 | 0.485 | 0.359 | 0.334 |
 | YOLOv13-S | B1 | 0.619 | 0.664 | 0.641 | 0.571 | 0.418 | 0.381 |
 | YOLOv13-S | B2 | 0.471 | 0.826 | 0.600 | 0.520 | 0.355 | 0.353 |
+| RF-DETR-S | B0 | 0.684 | 0.711 | 0.697 | 0.669 | 0.527 | 0.488 |
+| RF-DETR-S | B1 | 0.589 | 0.819 | 0.685 | 0.670 | 0.538 | 0.497 |
+| RF-DETR-S | B2 | 0.652 | 0.705 | 0.677 | 0.658 | 0.531 | **0.502** |
+| TinyFormer-S-PBM | B0 | 0.562 | 0.732 | 0.636 | 0.537 | 0.401 | 0.380 |
+| TinyFormer-S-PBM | B1 | 0.585 | 0.758 | 0.661 | 0.565 | 0.426 | 0.407 |
+| TinyFormer-S-PBM | B2 | 0.558 | 0.899 | 0.689 | 0.601 | 0.489 | 0.462 |
+| DEIMv2-S | B0 | 0.500 | 0.738 | 0.596 | 0.498 | 0.376 | 0.351 |
+| DEIMv2-S | B1 | 0.570 | 0.711 | 0.633 | 0.569 | 0.448 | 0.426 |
+| DEIMv2-S | B2 | 0.572 | 0.718 | 0.637 | 0.588 | 0.489 | 0.442 |
 
 ### 9.2 Balanced-diagnostic combined mAP50–95
 
 | Model | B0 | B1 | B2 |
 |---|---:|---:|---:|
-| RF-DETR-S | **0.527** | Pending | Pending |
-| YOLO11-S | 0.269 | 0.342 | 0.350 |
 | YOLOv10-S | 0.216 | 0.277 | 0.388 |
+| YOLO11-S | 0.269 | 0.342 | 0.350 |
 | YOLOv12-S | 0.281 | 0.355 | 0.348 |
 | YOLOv13-S | 0.351 | 0.393 | 0.370 |
+| RF-DETR-S | 0.527 | 0.541 | **0.551** |
+| TinyFormer-S-PBM | 0.416 | 0.435 | 0.489 |
+| DEIMv2-S | 0.384 | 0.457 | 0.482 |
 
 Balanced results are generally higher because predictions on 132 removed Source A background-only tiles can no longer contribute false positives. This does not mean the model improved; only the evaluation composition changed.
 
-### 9.3 Effect of augmentation on completed YOLO models
+### 9.3 Effect of augmentation across all detector families
 
 | Model | B0 mAP | B1 mAP | B2 mAP | B1 - B0 | B2 - B1 |
 |---|---:|---:|---:|---:|---:|
@@ -317,44 +324,47 @@ Balanced results are generally higher because predictions on 132 removed Source 
 | YOLOv10-S | 0.2067 | 0.2666 | 0.3670 | +0.0599 | +0.1004 |
 | YOLOv12-S | 0.2624 | 0.3382 | 0.3084 | +0.0758 | -0.0298 |
 | YOLOv13-S | 0.3340 | 0.3806 | 0.3528 | +0.0466 | -0.0279 |
-| **Four-model mean** | **0.2627** | **0.3244** | **0.3411** | **+0.0617** | **+0.0167** |
+| RF-DETR-S | 0.4875 | 0.4967 | 0.5023 | +0.0091 | +0.0056 |
+| TinyFormer-S-PBM | 0.3805 | 0.4071 | 0.4619 | +0.0266 | +0.0547 |
+| DEIMv2-S | 0.3514 | 0.4264 | 0.4422 | +0.0750 | +0.0158 |
+| **Seven-model mean** | **0.3243** | **0.3754** | **0.3958** | **+0.0511** | **+0.0204** |
 
-All four completed YOLO families improve from B0 to B1. This is the most consistent result in the current experiment and supports offline H/V augmentation.
+All seven detector families improve from B0 to B1. This is the most consistent result in the experiment and supports offline H/V augmentation.
 
-The FDA increment is not consistent. It provides a large gain for YOLOv10-S and a smaller gain for YOLO11-S, but it reduces mAP for YOLOv12-S and YOLOv13-S. B2 also tends to increase recall while sacrificing precision. For example, YOLOv13-S recall rises from 0.664 in B1 to 0.826 in B2, while precision falls from 0.619 to 0.471 and mAP declines. This suggests that FDA changes the detection operating behaviour and may increase false positives for some architectures.
+The FDA increment is not universal. It improves five detectors, with the largest gains for YOLOv10-S and TinyFormer-S-PBM, but reduces mAP for YOLOv12-S and YOLOv13-S. B2 can increase recall while sacrificing precision. For example, YOLOv13-S recall rises from 0.664 in B1 to 0.826 in B2, while precision falls from 0.619 to 0.471 and mAP declines. This suggests that FDA changes detection behaviour and may increase false positives for some architectures.
 
 ### 9.4 Source-domain observations
 
-The source-specific rows should be examined alongside the combined row because Source A and Source B have different image and background distributions. For RF-DETR-S B0:
+The source-specific rows should be examined alongside the combined row because Source A and Source B have different image and background distributions. Seven-model means on the primary-full test are:
 
-| Evaluation | Source A mAP50–95 | Source B mAP50–95 | Combined mAP50–95 |
+| Scenario | Source A mAP50–95 | Source B mAP50–95 | Combined mAP50–95 |
 |---|---:|---:|---:|
-| Primary full | 0.420 | 0.613 | 0.488 |
-| Balanced diagnostic | 0.480 | 0.613 | 0.527 |
+| B0 | 0.3162 | 0.3867 | 0.3243 |
+| B1 | 0.3233 | 0.4659 | 0.3754 |
+| B2 | 0.3280 | 0.5091 | 0.3958 |
 
-Source B is unchanged between views because no Source B images were removed. Source A improves by 0.060 when excess background tiles are removed, indicating that full-scene/background false positives are an important Source A error mode.
+The incremental FDA gain is much larger on Source B (+0.0431) than Source A (+0.0047). Balanced-diagnostic combined means are 0.3491, 0.4001, and 0.4253 for B0/B1/B2. Source B is unchanged between views because no Source B images are removed; the higher balanced scores indicate that excess Source A background tiles remain an important false-positive mode.
 
-### 9.5 Current model ranking
+### 9.5 Final model ranking
 
-RF-DETR-S B0 is currently the strongest available individual run on the main view, with mAP50–95 0.4875 and F1 0.6974. The best completed YOLO run is YOLOv13-S B1 at mAP50–95 0.3806, narrowly ahead of YOLOv10-S B2 at 0.3670. This ranking is provisional because the transformer-family scenario matrix is incomplete.
+RF-DETR-S B2 is the strongest individual run on the main view, with mAP50–95 0.5023. TinyFormer-S-PBM B2 ranks second at 0.4619 and is the strongest model below ten million parameters, followed by DEIMv2-S B2 at 0.4422. The best YOLO run is YOLOv13-S B1 at 0.3806, narrowly ahead of YOLOv10-S B2 at 0.3670.
 
 ## 10. Training-time interpretation
 
-RF-DETR-S is much slower than the YOLO families because it combines a transformer backbone, 300 object queries, matching-based detection losses, full validation each epoch, regular and EMA weights, and large checkpoints. B1 also has twice as many batches as B0, while B2 has three times as many. The A100 is not continuously compute-saturated during data loading, COCO evaluation, and checkpoint writing.
+The YOLO families record approximately 0.05--0.23 hours per run, RF-DETR-S 1.94--5.19 hours, TinyFormer-S-PBM 1.58--5.72 hours, and DEIMv2-S 3.34--4.73 hours. B1 has twice as many training images as B0, while B2 has three times as many. These wall-clock values include framework-specific validation and checkpoint writing and must not be interpreted as standardized inference latency.
 
 The completed RF-DETR-S B0 training took approximately 6,974 seconds, or 1 hour 56 minutes, and early-stopped after training epochs 0 through 34. Its current CSV metadata incorrectly displays `epochs_completed = 100`; that field contains the planned maximum rather than the observed completed epoch count for this run. The training log and metrics CSV are authoritative for the actual stopping point.
 
 ## 11. Threats to validity and reporting limitations
 
-1. **Incomplete benchmark:** RF-DETR-S B1/B2, TinyFormer-S-PBM, and DEIMv2-S must finish before declaring the overall best model or the transformer-specific augmentation effect.
-2. **Single seed:** all current results use seed 42. Without repeated seeds, random variation and confidence intervals are unknown.
-3. **Epoch-matched rather than update-matched:** B1 and B2 receive two and three times as many training samples and planned optimizer steps as B0. Gains cannot be attributed solely to image diversity.
-4. **Optimized F1 threshold:** P/R/F1 use the best threshold found on the evaluated subset and should not be presented as fixed deployment performance.
-5. **Public dataset provenance:** Roboflow versions can contain hidden preprocessing or generated derivatives. The local recovery and audits reduce this risk but should remain part of the artifact bundle.
-6. **Source imbalance:** Source A includes many tiled background images. `primary_full` is realistic for the prepared test set, while `balanced_diagnostic` is only a controlled secondary view.
-7. **Correlated augmented samples:** B1 and B2 copies are transformations of B0 training images rather than independent acquisitions.
-8. **Architecture-native differences:** input size is 512 for RF-DETR-S and 640 for the other configured models; official optimizers and pretrained representations also differ.
-9. **Metadata issue:** RF-DETR-S B0 currently records the requested epoch count as completed epochs. This must be corrected before producing the final publication table.
+1. **Single seed:** all results use seed 42. Without repeated seeds, random variation and confidence intervals are unknown.
+2. **Epoch-matched rather than update-matched:** B1 and B2 receive two and three times as many training samples and planned optimizer steps as B0. Gains cannot be attributed solely to image diversity.
+3. **Optimized F1 threshold:** P/R/F1 use the best threshold found on the evaluated subset and should not be presented as fixed deployment performance.
+4. **Public dataset provenance:** Roboflow versions can contain hidden preprocessing or generated derivatives. The local recovery and audits reduce this risk but should remain part of the artifact bundle.
+5. **Source imbalance:** Source A includes many tiled background images. `primary_full` is realistic for the prepared test set, while `balanced_diagnostic` is only a controlled secondary view.
+6. **Correlated augmented samples:** B1 and B2 copies are transformations of B0 training images rather than independent acquisitions.
+7. **Architecture-native differences:** input size is 512 for RF-DETR-S and 640 for the other configured models; official optimizers and pretrained representations also differ.
+8. **Metadata issue:** RF-DETR-S B0 currently records the requested epoch count as completed epochs. The training log and metrics CSV remain authoritative for its observed stopping point.
 
 ## 12. Reproducibility and artifact map
 
@@ -402,11 +412,11 @@ python scripts/09_generate_report_figures.py
 python scripts/11_generate_detector_figures.py
 ```
 
-## 13. Preliminary conclusion
+## 13. Final conclusion
 
-The implemented experiment provides a leakage-audited, cross-source comparison of offline augmentation for UAV-based BSR detection. The completed YOLO matrix shows a robust positive effect from geometric augmentation: every YOLO family improves from B0 to B1 on the complete combined test set. FDA produces a positive mean change but is not uniformly beneficial, improving YOLOv10-S and YOLO11-S while reducing YOLOv12-S and YOLOv13-S performance. The result suggests that Fourier appearance transfer interacts with architecture and confidence calibration rather than acting as a universal improvement.
+The implemented experiment provides a leakage-audited, cross-source comparison of offline augmentation for UAV-based BSR detection. Geometric augmentation has a robust positive effect: all seven detector families improve from B0 to B1 on the complete combined test set, increasing the mean by 0.0511. FDA adds a positive mean change of 0.0204 but is not uniformly beneficial, improving five detectors while reducing YOLOv12-S and YOLOv13-S performance. Fourier appearance transfer therefore interacts with architecture and confidence calibration rather than acting as a universal improvement.
 
-RF-DETR-S B0 currently outperforms every completed YOLO run, but the detector comparison and the B0/B1/B2 conclusion cannot be finalized until RF-DETR-S B1/B2, TinyFormer-S-PBM, and DEIMv2-S complete. The final report should prioritize primary-full combined mAP50–95, use the balanced view to explain background sensitivity, include source-specific results to expose domain shift, and report repeated-seed uncertainty if compute permits.
+RF-DETR-S B2 is the overall accuracy leader at 0.5023 mAP50–95. TinyFormer-S-PBM B2 provides the strongest sub-10-million-parameter result at 0.4619, while DEIMv2-S reaches 0.4422. The primary-full combined result remains the headline metric; the balanced view and source-specific rows explain background sensitivity and domain asymmetry. Repeated-seed uncertainty should be added if compute permits.
 
 ## 14. Finalization checklist
 
@@ -416,10 +426,10 @@ RF-DETR-S B0 currently outperforms every completed YOLO run, but the detector co
 - [x] YOLO11-S B0/B1/B2 complete.
 - [x] YOLOv12-S B0/B1/B2 complete.
 - [x] YOLOv13-S B0/B1/B2 complete.
-- [ ] RF-DETR-S B1/B2 complete and consolidated.
-- [ ] TinyFormer-S-PBM B0/B1/B2 complete and consolidated.
-- [ ] DEIMv2-S B0/B1/B2 complete and consolidated.
+- [x] RF-DETR-S B1/B2 complete and consolidated.
+- [x] TinyFormer-S-PBM B0/B1/B2 complete and consolidated.
+- [x] DEIMv2-S B0/B1/B2 complete and consolidated.
 - [ ] RF-DETR completed-epoch metadata corrected.
-- [ ] Final figures regenerated after all runs.
+- [x] Final figures regenerated after all runs.
 - [ ] Optional repeated-seed experiments and uncertainty intervals added.
-- [ ] Abstract, results, ranking, and conclusion updated from preliminary to final.
+- [x] Abstract, results, ranking, and conclusion updated from preliminary to final.
